@@ -17,3 +17,10 @@ gen/
 
 # Local configuration file (sdk path, etc)
 local.properties
+
+
+##
+
+# eclipse files
+.classpath
+.project
