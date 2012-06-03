@@ -8,11 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.wimm.framework.app.LauncherActivity;
-import com.wimm.framework.widget.Button;
 
 public class TallyActivity extends LauncherActivity {
-    // public class TallyActivity extends LauncherActivity implements
-    // View.OnClickListener {
     private static final boolean LOCAL_LOGV = false;
     private static final String TAG = "TallyActivity";
 
@@ -21,7 +18,6 @@ public class TallyActivity extends LauncherActivity {
     private int mCount = 0;
 
     private TextView mCountView;
-    private Button mResetButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,31 +28,9 @@ public class TallyActivity extends LauncherActivity {
         setContentView(R.layout.main);
 
         mCountView = (TextView) findViewById(R.id.countView);
-        mResetButton = (Button) findViewById(R.id.resetButton);
 
         restoreCount(savedInstanceState);
     }
-
-    // @Override
-    // protected void onRestart() {
-    // if (LOCAL_LOGV)
-    // Log.v(TAG, "onRestart");
-    // super.onRestart();
-    // }
-
-    // @Override
-    // protected void onStart() {
-    // if (LOCAL_LOGV)
-    // Log.v(TAG, "onStart");
-    // super.onStart();
-    // }
-
-    // @Override
-    // protected void onResume() {
-    // if (LOCAL_LOGV)
-    // Log.v(TAG, "onResume");
-    // super.onResume();
-    // }
 
     @Override
     protected void onPause() {
@@ -66,20 +40,6 @@ public class TallyActivity extends LauncherActivity {
 
         savePrefs();
     }
-
-    // @Override
-    // protected void onStop() {
-    // if (LOCAL_LOGV)
-    // Log.v(TAG, "onStop");
-    // super.onStop();
-    // }
-
-    // @Override
-    // protected void onDestroy() {
-    // if (LOCAL_LOGV)
-    // Log.v(TAG, "onDestroy");
-    // super.onDestroy();
-    // }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -99,6 +59,8 @@ public class TallyActivity extends LauncherActivity {
         restoreCount(savedInstanceState);
     }
 
+    // getters and setters
+
     public int getCount() {
         return mCount;
     }
@@ -111,6 +73,8 @@ public class TallyActivity extends LauncherActivity {
             updateCountView();
         }
     }
+
+    // other methods
 
     public void onClick(View v) {
         if (LOCAL_LOGV)
@@ -138,13 +102,6 @@ public class TallyActivity extends LauncherActivity {
         }
     }
 
-    private void updateCountView() {
-        if (LOCAL_LOGV)
-            Log.v(TAG, "updateCountView");
-
-        mCountView.setText(Integer.toString(getCount()));
-    }
-
     private void savePrefs() {
         if (LOCAL_LOGV)
             Log.v(TAG, "savePrefs");
@@ -153,5 +110,12 @@ public class TallyActivity extends LauncherActivity {
                 getPreferences(MODE_PRIVATE).edit();
         editor.putInt(PREF_COUNT, getCount());
         editor.commit();
+    }
+
+    private void updateCountView() {
+        if (LOCAL_LOGV)
+            Log.v(TAG, "updateCountView");
+
+        mCountView.setText(Integer.toString(getCount()));
     }
 }
